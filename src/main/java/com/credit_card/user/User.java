@@ -1,15 +1,19 @@
-package com.test.credit_card.user.impl;
+package com.credit_card.user;
 
-import com.test.credit_card.user.IUser;
+import com.credit_card.creditcard.CreditCard;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class User implements IUser, Serializable {
+public class User implements Cloneable, Serializable {
 
     private static final long serialVersionUID = 1L;
     private int id;
     private String userName;
     private String password;
     private boolean isAdmin;
+    private List<CreditCard> cards;
 
     public User() {
     }
@@ -19,44 +23,37 @@ public class User implements IUser, Serializable {
         this.userName = userName;
         this.password = password;
         this.isAdmin = isAdmin;
+        cards = new ArrayList<CreditCard>();
     }
 
-    @Override
     public int getUserId() {
         return this.id;
     }
 
-    @Override
     public void setUserId(int id) {
         this.id = id;
     }
 
-    @Override
     public String getUserName() {
         return this.userName;
     }
 
-    @Override
     public String getUserPassword() {
         return this.password;
     }
 
-    @Override
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    @Override
     public void setUserPassword(String password) {
         this.password = password;
     }
 
-    @Override
     public boolean isUserAdmin() {
         return this.isAdmin;
     }
 
-    @Override
     public void setUserAdmin(boolean set) {
         this.isAdmin = set;
     }

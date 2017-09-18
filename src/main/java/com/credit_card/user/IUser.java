@@ -1,6 +1,4 @@
-package com.test.credit_card.user;
-
-import com.test.credit_card.creditcard.ICreditCard;
+package com.credit_card.user;
 
 public interface IUser {
 

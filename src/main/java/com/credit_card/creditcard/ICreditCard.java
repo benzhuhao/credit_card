@@ -1,4 +1,4 @@
-package com.test.credit_card.creditcard;
+package com.credit_card.creditcard;
 
 public interface ICreditCard {
 

@@ -1,4 +1,4 @@
-package com.test.credit_card.creditcard.impl;
+package com.credit_card.creditcard;
 
 public class CreditCard {
 

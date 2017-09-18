@@ -1,4 +1,4 @@
-package com.test.credit_card.user.impl;
+package com.credit_card.user.impl;
 
 import org.junit.After;
 import org.junit.Before;
