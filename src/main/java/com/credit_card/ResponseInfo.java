@@ -1,14 +1,15 @@
 package com.credit_card;
 
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
+
 import java.util.UUID;
-import java.util.logging.Logger;
 
 public class ResponseInfo {
 
     // Prefix for all message strings. [C]redit [C]ard
     private static final String APPLICATION_CODE = "CC";
-    private static final String CLASS_NAME = "CC." + ResponseInfo.class.getSimpleName();
-    private static final Logger log = Logger.getLogger(CLASS_NAME);
+    private static final XLogger log = XLoggerFactory.getXLogger(ResponseInfo.class);
 
     public String message;
     public String requestId;

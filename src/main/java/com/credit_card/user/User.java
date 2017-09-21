@@ -30,8 +30,9 @@ public class User implements Cloneable, Serializable {
         return this.id;
     }
 
-    public void setUserId(int id) {
+    public User setUserId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getUserName() {
@@ -42,20 +43,32 @@ public class User implements Cloneable, Serializable {
         return this.password;
     }
 
-    public void setUserName(String userName) {
+    public User setUserName(String userName) {
         this.userName = userName;
+        return this;
     }
 
-    public void setUserPassword(String password) {
+    public User setUserPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public boolean isUserAdmin() {
         return this.isAdmin;
     }
 
-    public void setUserAdmin(boolean set) {
+    public User setUserAdmin(boolean set) {
         this.isAdmin = set;
+        return this;
+    }
+
+    public List<CreditCard> getCards() {
+        return cards;
+    }
+
+    public User setCard(CreditCard card) {
+        cards.add(card);
+        return this;
     }
 
 }
