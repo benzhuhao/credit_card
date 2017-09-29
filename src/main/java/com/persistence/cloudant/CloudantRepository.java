@@ -1,6 +1,8 @@
 package com.persistence.cloudant;
 
+import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
+import com.google.gson.GsonBuilder;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
@@ -17,6 +19,8 @@ public class CloudantRepository implements Repository {
     private final CloudantClient client;
     private final String baseDbUri;
 
+//    private static CloudantDbManager dbManager = createDbManager();
+
     public CloudantRepository(CloudantClient client, String databaseName) throws RepositoryException {
         log.entry(client, databaseName);
 
@@ -29,7 +33,7 @@ public class CloudantRepository implements Repository {
         }
 
         log.trace("Received a CloudantClient for {} to access database {}", client.getBaseUri().toString(), databaseName);
-        this.client = client;
+        this.client = ClientBuilder.account("").username("").password("").gsonBuilder(new GsonBuilder()).build();
         this.baseDbUri = client.getBaseUri() + "/" + databaseName + "/";
 
 
