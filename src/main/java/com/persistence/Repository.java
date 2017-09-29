@@ -28,12 +28,20 @@ public interface Repository {
     public User getUser(String userId) throws RepositoryException;
 
     /**
+     * Update user object identified by the specified ID
+     * @param userId the ID of the user to update
+     * @param updateBody the body of user info need to be updated
+     * @return the updated user's ID
+     */
+    public String updateUser(String userId, User updateBody) throws RepositoryException;
+
+    /**
      * Delete the user object identified by the specified ID.
      * @param userId the ID of the user to be deleted.
      * @returns true is the user was deleted, false is no user exists for the specified user ID.
      * @throws RepositoryException
      */
-    public void deleteUser(String userId) throws RepositoryException, RepositoryObjectNotFoundException;
+    public boolean deleteUser(String userId) throws RepositoryException, RepositoryObjectNotFoundException;
 
     /**
      * Create a new configuration block
@@ -52,11 +60,19 @@ public interface Repository {
     public CreditCard getCreditCard(String userId, String creditCardNamespace) throws RepositoryException;
 
     /**
+     * update Credit card info
+     * @param userId the ID of the user that contains the Credit Card
+     * @param creditCardNameSpace the namespace of the Credit Card to be updated
+     * @param updateBody the namespace of the
+     * @return
+     */
+
+    /**
      * Delete the configuration block identified by the store ID and block namespace.
      * @param userId the ID of the user that contains the credit Cards.
      * @param creditCardNamespace the namespace of the credit Cards to be retrieved.
      * @return true if the credit card was deleted, false if no credit card exists for the specified parameters.
      */
-    public void deleteCreditCard(String userId, String creditCardNamespace) throws RepositoryException, RepositoryObjectNotFoundException;
+    public boolean deleteCreditCard(String userId, String creditCardNamespace) throws RepositoryException, RepositoryObjectNotFoundException;
 
 }

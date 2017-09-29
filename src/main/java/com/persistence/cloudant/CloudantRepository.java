@@ -1,5 +1,6 @@
 package com.persistence.cloudant;
 
+import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
@@ -9,6 +10,9 @@ import com.credit_card.user.User;
 import com.persistence.Repository;
 import com.persistence.RepositoryException;
 import com.persistence.RepositoryObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Value;
+
+import java.net.MalformedURLException;
 
 public class CloudantRepository implements Repository {
 
@@ -17,7 +21,9 @@ public class CloudantRepository implements Repository {
     private final CloudantClient client;
     private final String baseDbUri;
 
-    public CloudantRepository(CloudantClient client, String databaseName) throws RepositoryException {
+    public CloudantRepository(@Value("${cloudant.acc}") String acc,
+                              @Value("${cloudant.username}") String username,
+                              @Value("${cloudant.password}") String password) throws RepositoryException, MalformedURLException {
         log.entry(client, databaseName);
 
         if (client == null) {
@@ -29,7 +35,10 @@ public class CloudantRepository implements Repository {
         }
 
         log.trace("Received a CloudantClient for {} to access database {}", client.getBaseUri().toString(), databaseName);
-        this.client = client;
+        this.client = ClientBuilder.account(acc)
+                                    .username(username)
+                                    .password(password)
+                                    .build();
         this.baseDbUri = client.getBaseUri() + "/" + databaseName + "/";
 
 
@@ -71,6 +80,18 @@ public class CloudantRepository implements Repository {
     }
 
     /**
+     * Update user object identified by the specified ID
+     *
+     * @param userId     the ID of the user to update
+     * @param updateBody the body of user info need to be updated
+     * @return the updated user's ID
+     */
+    @Override
+    public String updateUser(String userId, User updateBody) throws RepositoryException {
+        return null;
+    }
+
+    /**
      * Delete the user object identified by the specified ID.
      *
      * @param userId the ID of the user to be deleted.
@@ -78,8 +99,9 @@ public class CloudantRepository implements Repository {
      * @returns true is the user was deleted, false is no user exists for the specified user ID.
      */
     @Override
-    public void deleteUser(String userId) throws RepositoryException, RepositoryObjectNotFoundException {
+    public boolean deleteUser(String userId) throws RepositoryException, RepositoryObjectNotFoundException {
 
+        return false;
     }
 
     /**
@@ -114,7 +136,8 @@ public class CloudantRepository implements Repository {
      * @return true if the credit card was deleted, false if no credit card exists for the specified parameters.
      */
     @Override
-    public void deleteCreditCard(String userId, String creditCardNamespace) throws RepositoryException, RepositoryObjectNotFoundException {
+    public boolean deleteCreditCard(String userId, String creditCardNamespace) throws RepositoryException, RepositoryObjectNotFoundException {
 
+        return false;
     }
 }
