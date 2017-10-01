@@ -9,30 +9,20 @@ import java.util.List;
 public class User implements Cloneable, Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int id;
     private String userName;
     private String password;
     private boolean isAdmin;
     private List<CreditCard> cards;
+    private transient String etag;
 
     public User() {
     }
 
-    public User(int id, String userName, String password, boolean isAdmin) {
-        this.id = id;
+    public User(String userName, String password, boolean isAdmin) {
         this.userName = userName;
         this.password = password;
         this.isAdmin = isAdmin;
         cards = new ArrayList<CreditCard>();
-    }
-
-    public int getUserId() {
-        return this.id;
-    }
-
-    public User setUserId(int id) {
-        this.id = id;
-        return this;
     }
 
     public String getUserName() {
